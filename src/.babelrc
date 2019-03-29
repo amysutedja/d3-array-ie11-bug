@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "debug": true,
+        "forceAllTransforms": true,
+        "modules": false,
+        "targets": {
+          "ie": "11"
+        },
+        "useBuiltIns": "entry"
+      }
+    ],
+    "@babel/preset-react"
+  ]
+}
