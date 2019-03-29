@@ -1,5 +1,6 @@
+const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const moduleList = ["@babel/polyfill", "react", "react-dom", "d3-array"];
+const path = require("path");
 
 module.exports = {
   devtool: "none",
@@ -25,22 +26,21 @@ module.exports = {
       }
     ]
   },
-  optimization: {
-    runtimeChunk: "single",
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: new RegExp(
-            `[\\/]node_modules[\\/](${moduleList.join("|")})[\\/]`
-          ),
-          chunks: "initial",
-          name: "vendors",
-          enforce: true
-        }
-      }
-    }
+  output: {
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist")
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor",
+      // filename: "vendor.js"
+      // (Give the chunk a different name)
+
+      minChunks: module => {
+        // this assumes your vendor imports exist in the node_modules directory
+        return module.context && module.context.indexOf("node_modules") !== -1;
+      }
+    }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
-    "server:production": "webpack-dev-server --open --mode production",
-    "build": "webpack --mode production --verbose",
+    "start": "webpack-dev-server",
+    "server:production": "NODE_ENV=production webpack-dev-server",
+    "build": "NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,9 +21,8 @@
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "webpack": "3.10.0",
+    "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
